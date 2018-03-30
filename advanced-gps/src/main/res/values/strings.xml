@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">advanced-gps</string>
+    <string name="key_gps_accuracy">gps_accuracy</string>
+    <string name="default_gps_sync">100</string>
+    <string name="gps_notification_channel_id">com.telen.library.service.gps</string>
+</resources>
