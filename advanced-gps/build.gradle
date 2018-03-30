@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'telen'
+    bintrayName = 'advanced-gps'
+
+    publishedGroupId = 'com.telen.library'
+    libraryName = 'AdvancedGPS'
+    artifact = 'advanced-gps'
+
+    libraryDescription = 'A GPS library based over Google Location API and which provides an easier tool to start and stop GPS in background'
+
+    siteUrl = 'https://github.com/kaygenzo/AdvancedGPSLibrary'
+    gitUrl = 'https://github.com/kaygenzo/AdvancedGPSLibrary'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'kaygenzo'
+    developerName = 'Karim Yarboua'
+    developerEmail = 'karim.yarboua@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     defaultConfig {
         minSdkVersion 15
@@ -36,3 +60,6 @@ dependencies {
 
     compile "com.google.android.gms:play-services-location:$playServices"
 }
+
+apply from: 'https://raw.githubusercontent.com/kaygenzo/bintray/master/install.gradle'
+apply from: 'https://raw.githubusercontent.com/kaygenzo/bintray/master/bintray.gradle'
