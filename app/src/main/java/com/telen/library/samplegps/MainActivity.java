@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,15 +24,10 @@ import com.telen.library.advanced_gps.models.GPSCallback;
 
 public class MainActivity extends AppCompatActivity implements GPSCallback {
 
-    private Button btnGetLastKnownLocation;
     private TextView outputGetLastKnownLocation;
-    private Button btnStartLocation;
     private TextView outputLocationChanged;
-    private Button btnStopLocationUpdates;
     private TextView mBindingStatus;
     private TextView mLocationsStatus;
-    private Button btnBind;
-    private Button btnUnbind;
 
     private GPSManager manager;
 
@@ -42,23 +38,23 @@ public class MainActivity extends AppCompatActivity implements GPSCallback {
         manager = new GPSManager(this);
         manager.addCallback(this);
 
-        btnGetLastKnownLocation = findViewById(R.id.btn_last_known_location);
+        final Button btnGetLastKnownLocation = findViewById(R.id.btn_last_known_location);
         outputGetLastKnownLocation = findViewById(R.id.output_get_last_known_location);
-        btnStartLocation = findViewById(R.id.btn_start_location);
+        final Button btnStartLocation = findViewById(R.id.btn_start_location);
         outputLocationChanged = findViewById(R.id.output_location_changed);
 
         btnGetLastKnownLocation.setOnClickListener(view -> manager.getLastKnownLocation());
         btnStartLocation.setOnClickListener(view -> manager.startLocationListener());
 
-        btnStopLocationUpdates = findViewById(R.id.btn_stop_location);
+        final Button btnStopLocationUpdates = findViewById(R.id.btn_stop_location);
         btnStopLocationUpdates.setOnClickListener(view -> manager.stopLocationListener());
 
         mBindingStatus = findViewById(R.id.binding_status);
         mLocationsStatus = findViewById(R.id.location_status);
 
-        btnBind = findViewById(R.id.btn_bind);
+        final Button btnBind = findViewById(R.id.btn_bind);
         btnBind.setOnClickListener(view -> manager.bindService());
-        btnUnbind = findViewById(R.id.btn_unbind);
+        final Button btnUnbind = findViewById(R.id.btn_unbind);
         btnUnbind.setOnClickListener(view -> manager.unbindService());
     }
 
@@ -113,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements GPSCallback {
             startIntentSenderForResult(intent.getIntentSender(), code, null,0,0,0);
         } catch (IntentSender.SendIntentException e) {
             e.printStackTrace();
+            Log.e(MainActivity.class.getSimpleName(),"onLocationTurnedOff");
         }
     }
 
@@ -164,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements GPSCallback {
                 }
                 manager.startLocationListener();
                 break;
+            default:
         }
     }
 
@@ -175,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements GPSCallback {
                     manager.startLocationListener();
                 }
                 break;
+            default:
         }
     }
 }

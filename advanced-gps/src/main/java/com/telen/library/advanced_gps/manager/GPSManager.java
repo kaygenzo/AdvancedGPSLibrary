@@ -186,7 +186,7 @@ public class GPSManager {
 			for (ResolveInfo resolveInfo : services) {
 				Log.d(TAG, "service=" + resolveInfo);
 				ServiceInfo serviceInfo = resolveInfo.serviceInfo;
-				if(serviceInfo!=null) {
+				if(serviceInfo!=null && context.getPackageName().equals(serviceInfo.packageName)) {
 					ComponentName cn = new ComponentName(serviceInfo.packageName, serviceInfo.name);
 					intent = new Intent(Constants.ACTION_GPS_SERVICE);
 					intent.setComponent(cn);

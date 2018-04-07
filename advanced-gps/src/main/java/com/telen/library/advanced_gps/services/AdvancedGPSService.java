@@ -58,7 +58,7 @@ public abstract class AdvancedGPSService extends Service {
         }
     };
 
-    abstract protected void onNewPosition(Location location);
+    abstract protected void onNewPosition(@Nullable Location location);
 
     abstract protected void onLocationStarted();
 
