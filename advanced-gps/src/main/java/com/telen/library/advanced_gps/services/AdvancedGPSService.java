@@ -256,8 +256,12 @@ public abstract class AdvancedGPSService extends Service {
 
     @TargetApi(Build.VERSION_CODES.O)
     protected NotificationChannel getNotificationChannel() {
-        String channelId=getString(R.string.gps_notification_channel_id);
-        NotificationChannel channel = new NotificationChannel(channelId,"Locations listener", NotificationManager.IMPORTANCE_DEFAULT);
-        return channel;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = getString(R.string.gps_notification_channel_id);
+            NotificationChannel channel = new NotificationChannel(channelId, "Locations listener", NotificationManager.IMPORTANCE_DEFAULT);
+            return channel;
+        }
+        else
+            return null;
     }
 }
