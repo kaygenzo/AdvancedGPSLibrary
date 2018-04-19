@@ -45,23 +45,24 @@ public abstract class AdvancedGPSService extends Service {
             if(locationResult==null)
                 return;
             for (Location location : locationResult.getLocations()) {
-                onNewPosition(location);
-                if(iListener!=null) {
-                    try {
-                        iListener.onLocationChanged(location);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                        Log.e(TAG, "", e);
+                if(isValidLocation(location)) {
+                    onNewLocation(location);
+                    if (iListener != null) {
+                        try {
+                            iListener.onLocationChanged(location);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                            Log.e(TAG, "", e);
+                        }
                     }
                 }
             }
         }
     };
 
-    abstract protected void onNewPosition(@Nullable Location location);
-
+    abstract protected boolean isValidLocation(@Nullable Location location);
+    abstract protected void onNewLocation(@Nullable Location location);
     abstract protected void onLocationStarted();
-
     abstract protected void onLocationStopped();
 
     @Override

@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/kaygenzo/AdvancedGPSLibrary'
     gitUrl = 'https://github.com/kaygenzo/AdvancedGPSLibrary'
 
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.3'
 
     developerId = 'kaygenzo'
     developerName = 'Karim Yarboua'
